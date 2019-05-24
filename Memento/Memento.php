@@ -39,6 +39,29 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 class Memento {
 
 	/**
+	 * The BeforeParserFetchTemplateAndtitle hook, used here to change any
+	 * Template pages loaded so that their revision is closer in date/time to
+	 * that of the rest of the page.
+	 *
+	 * @param Parser $parser Parser object for this page
+	 * @param Title $title Title object for this page
+	 * @param boolean $skip boolean flag allowing the caller to skip the rest of statelessFetchTemplate
+	 * @param integer $id revision id of this page
+	 *
+	 * @return boolean indicating success to the caller
+	 */
+	public static function onBeforeParserFetchTemplateAndtitle(
+		$parser, $title, &$skip, &$id ) {
+
+		// This creates the error Wikimedia\Rdbms\DBUnexpectedError from line 3843 of /var/www/html/includes/libs/rdbms/database/Database.php: Wikimedia\Rdbms\Database::begin: Implicit transaction already active (from Wikimedia\Rdbms\Database::query (User::loadFromDatabase)).
+
+		$db = wfGetDB( DB_REPLICA );
+		MementoResource::fixTemplate( $title, $parser, $id, $db );
+
+		return true;
+	}
+
+	/**
 	 * The ArticleViewHeader hook, used to alter the headers before the rest
 	 * of the data is loaded.
 	 *

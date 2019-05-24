@@ -40,7 +40,8 @@
 		"TimeGate": "includes/TimeGate.php"
 	},
 	"Hooks": {
-		"ArticleViewHeader": [ "Memento::onArticleViewHeader" ]
+		"ArticleViewHeader": [ "Memento::onArticleViewHeader" ],
+		"BeforeParserFetchTemplateAndtitle": [ "Memento::onBeforeParserFetchTemplateAndtitle" ]
 	},
 	"config": {
 		"MementoIncludeNamespaces": {

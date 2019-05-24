@@ -469,7 +469,7 @@ abstract class MementoResource {
 	 *
 	 * @return array containing the text, finalTitle, and deps
 	 */
-	public function fixTemplate( Title $title, Parser $parser, &$id ) {
+	public static function fixTemplate( Title $title, Parser $parser, &$id, $db ) {
 		// stopgap measure until we can find a better way
 		// to work with parser cache
 		$parser->disableCache();
@@ -479,8 +479,7 @@ abstract class MementoResource {
 		if ( $request->getHeader( 'ACCEPT-DATETIME' ) ) {
 			$requestDatetime = $request->getHeader( 'ACCEPT-DATETIME' );
 
-			$mwMementoTimestamp = $this->parseRequestDateTime(
-				$requestDatetime );
+			$mwMementoTimestamp = wfTimestamp( TS_MW, $requestDatetime );
 
 			$firstRev = $title->getFirstRevision();
 
@@ -489,15 +488,15 @@ abstract class MementoResource {
 				if ( $firstRev->getTimestamp() < $mwMementoTimestamp ) {
 					$pgID = $title->getArticleID();
 
-					$this->db->begin();
+					$db->begin();
 
-					$res = $this->db->selectRow(
+					$res = $db->selectRow(
 						'revision',
 						[ 'rev_id' ],
 						[
 							'rev_page' => $pgID,
 							'rev_timestamp <=' .
-								$this->db->addQuotes( $mwMementoTimestamp )
+								$db->addQuotes( $mwMementoTimestamp )
 							],
 						__METHOD__,
 						[ 'ORDER BY' => 'rev_id DESC', 'LIMIT' => '1' ]
