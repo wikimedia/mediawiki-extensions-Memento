@@ -35,7 +35,7 @@ class ErrorStateTest extends PHPUnit\Framework\TestCase {
 		$uagent = "Memento-Mediawiki-Plugin/Test";
 
 		$curlCmd = "curl -v -s -A '$uagent' -b '$sessionCookieString' -k -i -H 'Accept-Datetime: bad-input' --url '$URIG'";
-		#echo "cmd: [$curlCmd]\n";
+		# echo "cmd: [$curlCmd]\n";
 		$response = `$curlCmd 2> $debugfile | tee "$outputfile"`;
 
 		$statusline = extractStatusLineFromResponse( $response );
@@ -62,7 +62,7 @@ class ErrorStateTest extends PHPUnit\Framework\TestCase {
 		$expected = acquireFormattedI18NString( 'en', 'timegate-400-date' );
 
 		# TODO: this is a workaround, find a better solution
-		$expected = str_replace("<br />", "<br/>", $expected);
+		$expected = str_replace( "<br />", "<br/>", $expected );
 		$this->assertStringMatchesFormat( "%A" . $expected . "%A", $entity );
 	}
 
@@ -121,7 +121,6 @@ class ErrorStateTest extends PHPUnit\Framework\TestCase {
 
 		# To ensure that the error message actually exists in the output
 		$expected = acquireFormattedI18NString( 'en', 'timemap-404-title' );
-
 
 		$this->assertStringMatchesFormat( "%A" . $expected . "%A", $entity );
 	}

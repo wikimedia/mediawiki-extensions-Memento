@@ -7,16 +7,15 @@ class SimpleTest extends PHPUnit\Framework\TestCase {
 	public static $instance = 0;
 
 	/**
-	 * @test
 	 * @group simple
 	 *
 	 */
-	public function SimpleLittleTests() {
+	public function testSimpleLittleTests() {
 		echo "executing simple little test\n";
-		$this->assertEquals("hi", "hi");
+		$this->assertEquals( "hi", "hi" );
 
 		$expected = "%AError 400: Requested date '%s' not parseable.<br /><b>First Memento:</b> %s<br /><b>Last Memento:</b> %s<br />%A";
-		$entity_whole =<<<EOD
+		$entity_whole = <<<EOD
 <!DOCTYPE html>
 <html class="client-nojs" lang="en" dir="ltr">
 <head>
@@ -143,11 +142,11 @@ EOD;
 
 		$expected = "%AError 400: Requested date '%s' not parseable.<br/><b>First Memento:</b> %s<br/><b>Last Memento:</b> %s<br/>%A";
 		# It's the space between the br and /, note <br /> in our work and <br/> in their output
-		$entity =<<<EOF
+		$entity = <<<EOF
 Error 400: Requested date 'bad-input' not parseable.<br/><b>First Memento:</b> <a rel="nofollow" class="external free" href="http://localhost:4455/index.php?title=Kevan_Lannister&amp;oldid=2">http://localhost:4455/index.php?title=Kevan_Lannister&amp;oldid=2</a><br/><b>Last Memento:</b> <a rel="nofollow" class="external free" href="http://localhost:4455/index.php?title=Kevan_Lannister&amp;oldid=127">http://localhost:4455/index.php?title=Kevan_Lannister&amp;oldid=127</a><br/>
 EOF;
 
 		$this->assertStringMatchesFormat( "%A" . $expected . "%A", $entity );
 	}
 
-};
+}
