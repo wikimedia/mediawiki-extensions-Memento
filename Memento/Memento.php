@@ -31,10 +31,6 @@
  * for clarity, testing, maintainability, etc.
  *
  */
-if ( !defined( 'MEDIAWIKI' ) ) {
-	echo "Not a valid entry point";
-	exit( 1 );
-}
 
 class Memento {
 
