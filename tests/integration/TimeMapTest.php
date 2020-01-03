@@ -23,7 +23,7 @@ class TimeMapTest extends PHPUnit\Framework\TestCase {
 		logOutOfMediawiki();
 	}
 
-	protected function setUp() {
+	protected function setUp() : void {
 		self::$instance++;
 	}
 
