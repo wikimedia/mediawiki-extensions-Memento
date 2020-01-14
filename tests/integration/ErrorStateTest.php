@@ -9,7 +9,7 @@ class ErrorStateTest extends PHPUnit\Framework\TestCase {
 
 	public static $instance = 0;
 
-	public static function setUpBeforeClass() {
+	public static function setUpBeforeClass() : void {
 		global $sessionCookieString;
 
 		if ( getenv( 'TESTUSERNAME' ) == 'NOAUTH' ) {
@@ -19,7 +19,7 @@ class ErrorStateTest extends PHPUnit\Framework\TestCase {
 		}
 	}
 
-	public static function tearDownAfterClass() {
+	public static function tearDownAfterClass() : void {
 		logOutOfMediawiki();
 	}
 

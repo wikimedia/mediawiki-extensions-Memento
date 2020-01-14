@@ -23,12 +23,6 @@
  */
 
 /**
- * Ensure that this file is only executed in the right context.
- *
-
- */
-
-/**
  * This class implements Full (starter) Time Map rendering for Time Maps
  * of the form:
  * http://example.com/index.php/Special:TimeMap/Page

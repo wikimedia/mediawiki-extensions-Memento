@@ -23,12 +23,6 @@
  */
 
 /**
- * Ensure that this file is only executed in the right context.
- *
-
- */
-
-/**
  * This class implements the header alteration and entity alteration functions
  * directly accessed Mementos, regardless of Time Negotiation style.
  *

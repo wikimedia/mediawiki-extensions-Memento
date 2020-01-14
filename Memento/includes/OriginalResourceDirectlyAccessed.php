@@ -23,12 +23,6 @@
  */
 
 /**
- * Ensure that this file is only executed in the right context.
- *
-
- */
-
-/**
  * This class implements the header alteration and entity alteration functions
  * used for any style of Time Negotiation when an Accept-Datetime header is NOT
  * given in the request.

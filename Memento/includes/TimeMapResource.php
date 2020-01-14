@@ -22,12 +22,6 @@
  * @file
  */
 
-/**
- * Ensure that this file is only executed in the right context.
- *
-
- */
-
 use Wikimedia\Rdbms\IDatabase;
 
 /**

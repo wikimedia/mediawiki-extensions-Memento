@@ -23,12 +23,6 @@
  */
 
 /**
- * Ensure that this file is only executed in the right context.
- *
-
- */
-
-/**
  * This class centralizes Time Negotiation.  It uses a Memento Resource as
  * input, manipulates that resource to its liking, then stores output
  * available in a variety of getters.

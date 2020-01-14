@@ -23,12 +23,6 @@
  */
 
 /**
- * Ensure that this file is only executed in the right context.
- *
-
- */
-
-/**
  *
  * Special Page Implementation of a Memento TimeMap
  * @see http://mementoweb.org

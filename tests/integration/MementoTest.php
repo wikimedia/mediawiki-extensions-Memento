@@ -9,7 +9,7 @@ class MementoTest extends PHPUnit\Framework\TestCase {
 
 	public static $instance = 0;
 
-	public static function setUpBeforeClass() {
+	public static function setUpBeforeClass() : void {
 		global $sessionCookieString;
 
 		if ( getenv( 'TESTUSERNAME' ) == 'NOAUTH' ) {
@@ -19,7 +19,7 @@ class MementoTest extends PHPUnit\Framework\TestCase {
 		}
 	}
 
-	public static function tearDownAfterClass() {
+	public static function tearDownAfterClass() : void {
 		logOutOfMediawiki();
 	}
 
@@ -67,7 +67,7 @@ class MementoTest extends PHPUnit\Framework\TestCase {
 		$statusline = extractStatuslineFromResponse( $response );
 		$entity = extractEntityFromResponse( $response );
 
-		$this->assertEquals( "302", $statusline["code"] );
+		$this->assertSame( "302", $statusline["code"] );
 
 		$this->assertArrayHasKey( 'Link', $headers, "No Link Header present" );
 		$this->assertArrayHasKey( 'Vary', $headers, "No Vary Header present" );
@@ -123,7 +123,7 @@ class MementoTest extends PHPUnit\Framework\TestCase {
 		$statusline = extractStatuslineFromResponse( $response );
 		$entity = extractEntityFromResponse( $response );
 
-		$this->assertEquals( "200", $statusline["code"] );
+		$this->assertSame( "200", $statusline["code"] );
 
 		$this->assertArrayHasKey( 'Link', $headers );
 		$this->assertArrayHasKey( 'Memento-Datetime', $headers );
@@ -179,7 +179,7 @@ class MementoTest extends PHPUnit\Framework\TestCase {
 		$statusline = extractStatuslineFromResponse( $response );
 		$entity = extractEntityFromResponse( $response );
 
-		$this->assertEquals( "200", $statusline["code"] );
+		$this->assertSame( "200", $statusline["code"] );
 
 		$this->assertArrayHasKey( 'Link', $headers, "No Link Header present" );
 		$this->assertArrayHasKey( 'Vary', $headers, "No Vary Header present" );
@@ -232,7 +232,7 @@ class MementoTest extends PHPUnit\Framework\TestCase {
 		$statusline = extractStatuslineFromResponse( $response );
 		$entity = extractEntityFromResponse( $response );
 
-		$this->assertEquals( "200", $statusline["code"] );
+		$this->assertSame( "200", $statusline["code"] );
 
 		$this->assertArrayHasKey( 'Link', $headers, "No Link Header present" );
 		$this->assertArrayHasKey( 'Memento-Datetime', $headers, "No Memento-Datetime Header present" );
@@ -536,7 +536,7 @@ class MementoTest extends PHPUnit\Framework\TestCase {
 		$statusline = extractStatusLineFromResponse( $response );
 		$entity = extractEntityFromResponse( $response );
 
-		$this->assertEquals( "200", $statusline["code"] );
+		$this->assertSame( "200", $statusline["code"] );
 
 		$this->StandardEntityTests( $entity, $URIR );
 	}
