@@ -201,54 +201,6 @@ class ErrorStateTest extends PHPUnit\Framework\TestCase {
 			$URIT, "200", $outputfile, $debugfile );
 	}
 
-	/**
-	 * @group traditionalErrorPages
-	 *
-	 * @dataProvider acquireTimeNegotiationData
-	 */
-	# public function test400TimeMapTraditionalError(
-	# $IDENTIFIER,
-	# $ACCEPTDATETIME,
-	# $URIR,
-	# $ORIGINALLATEST,
-	# $FIRSTMEMENTO,
-	# $LASTMEMENTO,
-	# $URIM,
-	# $URIG,
-	# $URIT,
-	# $COMMENT
-	# ) {
-	# $outputfile = __CLASS__ . '.' . __FUNCTION__ . '.' . self::$instance . '.txt';
-	# $debugfile = __CLASS__ . '.' . __FUNCTION__ . '-debug-' . self::$instance . '.txt';
-	#
-	# $this->Status400TimeMapErrorResponseCommonTests(
-	# $URIT, "400", $outputfile, $debugfile);
-	# }
-
-	# /**
-	# * @group friendlyErrorPages
-	# *
-	# * @dataProvider acquireTimeNegotiationData
-	# */
-	# public function test400TimeMapFriendlyError(
-	# $IDENTIFIER,
-	# $ACCEPTDATETIME,
-	# $URIR,
-	# $ORIGINALLATEST,
-	# $FIRSTMEMENTO,
-	# $LASTMEMENTO,
-	# $URIM,
-	# $URIG,
-	# $URIT,
-	# $COMMENT
-	# ) {
-	# $outputfile = __CLASS__ . '.' . __FUNCTION__ . '.' . self::$instance . '.txt';
-	# $debugfile = __CLASS__ . '.' . __FUNCTION__ . '-debug-' . self::$instance . '.txt';
-	#
-	# $this->Status400TimeMapErrorResponseCommonTests(
-	# $URIT, "200", $outputfile, $debugfile);
-	# }
-
 	public function acquireTimeNegotiationData() {
 		return acquireCSVDataFromFile(
 			getenv( 'TESTDATADIR' ) . '/time-negotiation-testdata.csv', 11 );
