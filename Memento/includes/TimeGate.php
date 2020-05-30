@@ -39,8 +39,14 @@ class TimeGate extends SpecialPage {
 	 * Constructor
 	 */
 	public function __construct() {
-		parent::__construct( $name = "TimeGate", $restriction = '', $listed = true, $function = false,
-			$file = 'default', $includable = false );
+		parent::__construct(
+			"TimeGate", // name
+			'', // restriction
+			true, // listed
+			false, // function
+			'default', // file
+			false // includable
+		);
 	}
 
 	/**
@@ -60,31 +66,27 @@ class TimeGate extends SpecialPage {
 		if ( !$urlparam ) {
 			$out->addHTML( wfMessage( 'timegate-welcome-message' )->parse() );
 			return;
-
-		} else {
-			// so we can use the same framework as the rest of the
-			// MementoResource classes, we need an Article class
-			$title = Title::newFromText( $urlparam );
-			$article = new Article( $title );
-			$article->setContext( $this->getContext() );
-
-			$db = wfGetDB( DB_REPLICA );
-
-			if ( !$title->exists() ) {
-				throw new ErrorPageError( 'timegate-title', 'timegate-404-title', [ $urlparam ] );
-
-			}
-
-			if ( !in_array( $title->getNamespace(), $wgMementoIncludeNamespaces ) ) {
-				throw new ErrorPageError( 'timegate-title', 'timegate-403-inaccessible', [ $title ] );
-
-			}
-
-			$page = new TimeGateResourceFrom302TimeNegotiation( $db, $article );
-
-			$page->alterHeaders();
-
 		}
+
+		// so we can use the same framework as the rest of the
+		// MementoResource classes, we need an Article class
+		$title = Title::newFromText( $urlparam );
+		if ( !$title->exists() ) {
+			throw new ErrorPageError( 'timegate-title', 'timegate-404-title', [ $urlparam ] );
+		}
+
+		if ( !in_array( $title->getNamespace(), $wgMementoIncludeNamespaces ) ) {
+			throw new ErrorPageError( 'timegate-title', 'timegate-403-inaccessible', [ $title ] );
+		}
+
+		$article = new Article( $title );
+		$article->setContext( $this->getContext() );
+
+		$db = wfGetDB( DB_REPLICA );
+
+		$page = new TimeGateResourceFrom302TimeNegotiation( $db, $article );
+
+		$page->alterHeaders();
 	}
 
 }

@@ -93,8 +93,7 @@ abstract class MementoResource {
 
 		if ( $row ) {
 			$revision['id'] = $row->rev_id;
-			$revision['timestamp'] = wfTimestamp(
-				TS_RFC2822, $row->rev_timestamp );
+			$revision['timestamp'] = wfTimestamp( TS_RFC2822, $row->rev_timestamp );
 		}
 
 		return $revision;
@@ -158,13 +157,13 @@ abstract class MementoResource {
 	 */
 	public function getCurrentMemento( $pageID, $pageTimestamp ) {
 		$sqlCondition = [
-				'rev_page' => $pageID,
-				'rev_timestamp<=' . $this->db->addQuotes( $pageTimestamp )
-				];
+			'rev_page' => $pageID,
+			'rev_timestamp<=' . $this->db->addQuotes( $pageTimestamp )
+		];
+
 		$sqlOrder = 'rev_timestamp DESC';
 
-		return $this->fetchMementoFromDatabase(
-			$sqlCondition, $sqlOrder );
+		return $this->fetchMementoFromDatabase( $sqlCondition, $sqlOrder );
 	}
 
 	/**
@@ -179,13 +178,13 @@ abstract class MementoResource {
 	 */
 	public function getNextMemento( $pageID, $pageTimestamp ) {
 		$sqlCondition = [
-				'rev_page' => $pageID,
-				'rev_timestamp>' . $this->db->addQuotes( $pageTimestamp )
-				];
+			'rev_page' => $pageID,
+			'rev_timestamp>' . $this->db->addQuotes( $pageTimestamp )
+		];
+
 		$sqlOrder = 'rev_timestamp ASC';
 
-		return $this->fetchMementoFromDatabase(
-			$sqlCondition, $sqlOrder );
+		return $this->fetchMementoFromDatabase( $sqlCondition, $sqlOrder );
 	}
 
 	/**
@@ -200,13 +199,13 @@ abstract class MementoResource {
 	 */
 	public function getPrevMemento( $pageID, $pageTimestamp ) {
 		$sqlCondition = [
-				'rev_page' => $pageID,
-				'rev_timestamp<' . $this->db->addQuotes( $pageTimestamp )
-				];
+			'rev_page' => $pageID,
+			'rev_timestamp<' . $this->db->addQuotes( $pageTimestamp )
+		];
+
 		$sqlOrder = 'rev_timestamp DESC';
 
-		return $this->fetchMementoFromDatabase(
-			$sqlCondition, $sqlOrder );
+		return $this->fetchMementoFromDatabase( $sqlCondition, $sqlOrder );
 	}
 
 	/**

@@ -39,8 +39,14 @@ class TimeMap extends SpecialPage {
 	 * Constructor
 	 */
 	public function __construct() {
-		parent::__construct( $name = "TimeMap", $restriction = '', $listed = true, $function = false,
-			$file = 'default', $includable = false );
+		parent::__construct(
+			"TimeMap", // name
+			'', // restriction
+			true, // listed
+			false, // function
+			'default', // file
+			false // includable
+		);
 	}
 
 	/**
@@ -59,31 +65,27 @@ class TimeMap extends SpecialPage {
 		if ( !$urlparam ) {
 			$out->addHTML( wfMessage( 'timemap-welcome-message' )->parse() );
 			return;
-
-		} else {
-			// so we can use the same framework as the rest of the
-			// MementoResource classes, we need an Article class
-			$title = TimeMapResource::deriveTitleObject( $urlparam );
-			$article = new Article( $title );
-			$article->setContext( $this->getContext() );
-
-			$db = wfGetDB( DB_REPLICA );
-
-			if ( !$title->exists() ) {
-				throw new ErrorPageError( 'timemap-title', 'timemap-404-title', [ $urlparam ] );
-
-			}
-
-			if ( !in_array( $title->getNamespace(), $wgMementoIncludeNamespaces ) ) {
-				throw new ErrorPageError( 'timemap-title', 'timemap-403-inaccessible', [ $title ] );
-
-			}
-
-			$page = TimeMapResource::timeMapFactory( $db, $article, $urlparam );
-
-			$page->alterEntity();
-
 		}
+
+		// so we can use the same framework as the rest of the
+		// MementoResource classes, we need an Article class
+		$title = TimeMapResource::deriveTitleObject( $urlparam );
+		if ( !$title->exists() ) {
+			throw new ErrorPageError( 'timemap-title', 'timemap-404-title', [ $urlparam ] );
+		}
+
+		if ( !in_array( $title->getNamespace(), $wgMementoIncludeNamespaces ) ) {
+			throw new ErrorPageError( 'timemap-title', 'timemap-403-inaccessible', [ $title ] );
+		}
+
+		$article = new Article( $title );
+		$article->setContext( $this->getContext() );
+
+		$db = wfGetDB( DB_REPLICA );
+
+		$page = TimeMapResource::timeMapFactory( $db, $article, $urlparam );
+
+		$page->alterEntity();
 	}
 
 }

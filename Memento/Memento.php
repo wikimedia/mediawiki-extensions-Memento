@@ -48,9 +48,7 @@ class Memento {
 	 *
 	 * @return bool indicating success to the caller
 	 */
-	public static function onArticleViewHeader(
-		&$article, &$outputDone, &$pcache
-		) {
+	public static function onArticleViewHeader( &$article, &$outputDone, &$pcache ) {
 		// avoid processing Mementos for nonexistent pages
 		// if we're an article, do memento processing, otherwise don't worry
 		// if we're a diff page, Memento doesn't make sense

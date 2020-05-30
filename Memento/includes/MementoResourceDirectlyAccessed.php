@@ -61,12 +61,10 @@ class MementoResourceDirectlyAccessed extends MementoResource {
 
 			$tguri = $this->getTimeGateURI( $title );
 
-			$entry = $this->constructLinkRelationHeader( $uri,
-				'original latest-version' );
+			$entry = $this->constructLinkRelationHeader( $uri, 'original latest-version' );
 			$out->addLinkHeader( $entry );
 
-			$entry = $this->constructLinkRelationHeader( $tguri,
-				'timegate' );
+			$entry = $this->constructLinkRelationHeader( $tguri, 'timegate' );
 			$out->addLinkHeader( $entry );
 
 			$first = $this->getFirstMemento( $titleObj );
@@ -76,8 +74,7 @@ class MementoResourceDirectlyAccessed extends MementoResource {
 			// getFirstMemento/getLastMemento is null?
 			// how would we have gotten here if titleObj was bad?
 
-			$entries = $this->generateRecommendedLinkHeaderRelations(
-				$titleObj, $first, $last );
+			$entries = $this->generateRecommendedLinkHeaderRelations( $titleObj, $first, $last );
 
 			foreach ( $entries as $value ) {
 				$out->addLinkHeader( $value );

@@ -100,17 +100,16 @@ class TimeNegotiator {
 
 		$title = $mr->getFullNamespacePageTitle( $titleObj );
 
-		$entries = $mr->generateRecommendedLinkHeaderRelations(
-			$titleObj, $first, $last );
+		$entries = $mr->generateRecommendedLinkHeaderRelations( $titleObj, $first, $last );
 
-		$this->linkRelations = array_merge(
-			$this->linkRelations, $entries );
+		$this->linkRelations = array_merge( $this->linkRelations, $entries );
 
 		if ( $mwMementoTimestamp ) {
 			$bestTimestamp = $mr->chooseBestTimestamp(
 				wfTimestamp( TS_MW, $first['timestamp'] ),
 				wfTimestamp( TS_MW, $last['timestamp'] ),
-				$mwMementoTimestamp );
+				$mwMementoTimestamp
+			);
 
 			$outputTS = $bestTimestamp;
 
