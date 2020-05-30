@@ -15,18 +15,18 @@ function extractHeadersFromResponse( $response ) {
 
 		foreach ( $lines as $line ) {
 			if ( strlen( $line ) == 0 ) {
-			break;
-		 }
+				break;
+			}
 
 			if ( strpos( $line, "HTTP" ) !== false ) {
-			list( $version, $code, $message ) = preg_split( "/ /", $line );
-		 } else {
-			if ( strpos( $line, ":" ) !== false ) {
-				list( $header, $value ) = preg_split( "/: /", $line, 2 );
-				$headers[$header] = $value;
+				list( $version, $code, $message ) = preg_split( "/ /", $line );
+			} else {
+				if ( strpos( $line, ":" ) !== false ) {
+					list( $header, $value ) = preg_split( "/: /", $line, 2 );
+					$headers[$header] = $value;
+				}
 			}
-		 }
-	 }
+		}
 
 	return $headers;
 }
@@ -43,14 +43,14 @@ function extractStatuslineFromResponse( $response ) {
 	$statusline = [];
 
 	foreach ( $lines as $line ) {
-			if ( strlen( $line ) == 0 ) {
+		if ( strlen( $line ) == 0 ) {
 			break;
-		 }
+		}
 
-			if ( strpos( $line, "HTTP" ) !== false ) {
+		if ( strpos( $line, "HTTP" ) !== false ) {
 			list( $version, $code, $message ) = preg_split( "/ /", $line );
 			break;
-		 }
+		}
 	}
 
 	$statusline["version"] = $version;
@@ -181,14 +181,14 @@ function extractHeadersStringFromResponse( $response ) {
 
 	$headers = '';
 
-		foreach ( $lines as $line ) {
-			if ( strlen( $line ) == 0 ) {
+	foreach ( $lines as $line ) {
+		if ( strlen( $line ) == 0 ) {
 			break;
-		 }
+		}
 
 		$headers .= $line . "\r\n";
 
-		}
+	}
 
 	return $headers;
 }
