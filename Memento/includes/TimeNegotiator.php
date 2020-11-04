@@ -30,27 +30,27 @@
 class TimeNegotiator {
 
 	/**
-	 * @var MementoResource $mementoResource - resource to operate on
+	 * @var MementoResource - resource to operate on
 	 */
 	private $mementoResource;
 
 	/**
-	 * @var string $locationURI - location URI for header use
+	 * @var string - location URI for header use
 	 */
 	private $locationURI;
 
 	/**
-	 * @var array $linkRelations - array containing link relation text
+	 * @var array - array containing link relation text
 	 */
 	private $linkRelations;
 
 	/**
-	 * @var string $mementoDatetime - datetime of the memento in RFC2822
+	 * @var string - datetime of the memento in RFC2822
 	 */
 	private $mementoDatetime;
 
 	/**
-	 * @var string $mementoId - oldID of the Memento page
+	 * @var string - oldID of the Memento page
 	 */
 	private $mementoId;
 

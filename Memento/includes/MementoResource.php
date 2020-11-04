@@ -44,12 +44,12 @@ abstract class MementoResource {
 	}
 
 	/**
-	 * @var IDatabase $db Database object for Memento Extension
+	 * @var IDatabase Database object for Memento Extension
 	 */
 	protected $db;
 
 	/**
-	 * @var Article $article Article Object of this Resource
+	 * @var Article Article Object of this Resource
 	 */
 	protected $article;
 
