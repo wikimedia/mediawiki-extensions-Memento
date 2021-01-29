@@ -29,13 +29,13 @@ class MementoTest extends PHPUnit\Framework\TestCase {
 
 	public function StandardEntityTests( $entity, $uri ) {
 		# To catch any PHP errors that the test didn't notice
-		$this->assertFalse( strpos( $entity, "<b>Fatal error</b>" ), "Fatal error discovered in output" );
+		$this->assertStringNotContainsString( $entity, "<b>Fatal error</b>", "Fatal error discovered in output" );
 
 		# To catch any PHP notices that the test didn't notice
-		$this->assertFalse( strpos( $entity, "<b>Notice</b>" ), "PHP notice discovered in output" );
+		$this->assertStringNotContainsString( $entity, "<b>Notice</b>", "PHP notice discovered in output" );
 
 		# To catch any PHP notices that the test didn't notice
-		$this->assertFalse( strpos( $entity, "<b>Warning</b>" ), "PHP warning discovered in output" );
+		$this->assertStringNotContainsString( $entity, "<b>Warning</b>", "PHP warning discovered in output" );
 	}
 
 	public function Status302StyleTimeGateResponseCommonTests(
