@@ -50,13 +50,13 @@ class ErrorStateTest extends PHPUnit\Framework\TestCase {
 		$this->assertContains( 'Accept-Datetime', $varyItems, "Accept-Datetime not present in Vary header" );
 
 		# To catch any PHP errors that the test didn't notice
-		$this->assertStringNotContainsString( $entity, "<b>Fatal error</b>" );
+		$this->assertStringNotContainsString( "<b>Fatal error</b>", $entity );
 
 		# To catch any PHP notices that the test didn't notice
-		$this->assertStringNotContainsString( $entity, "<b>Notice</b>" );
+		$this->assertStringNotContainsString( "<b>Notice</b>", $entity );
 
 		# To catch any PHP notices that the test didn't notice
-		$this->assertStringNotContainsString( $entity, "<b>Warning</b>" );
+		$this->assertStringNotContainsString( "<b>Warning</b>", $entity );
 
 		# To ensure that the error message actually exists in the output
 		$expected = acquireFormattedI18NString( 'en', 'timegate-400-date' );
@@ -82,13 +82,13 @@ class ErrorStateTest extends PHPUnit\Framework\TestCase {
 		$this->assertEquals( $statuscode, $statusline["code"] );
 
 		# To catch any PHP errors that the test didn't notice
-		$this->assertStringNotContainsString( $entity, "<b>Fatal error</b>" );
+		$this->assertStringNotContainsString( "<b>Fatal error</b>", $entity );
 
 		# To catch any PHP notices that the test didn't notice
-		$this->assertStringNotContainsString( $entity, "<b>Notice</b>" );
+		$this->assertStringNotContainsString( "<b>Notice</b>", $entity );
 
 		# To catch any PHP notices that the test didn't notice
-		$this->assertStringNotContainsString( $entity, "<b>Warning</b>" );
+		$this->assertStringNotContainsString( "<b>Warning</b>", $entity );
 
 		# To ensure that the error message actually exists in the output
 		$expected = acquireFormattedI18NString( 'en', 'timemap-404-title' );
@@ -111,13 +111,13 @@ class ErrorStateTest extends PHPUnit\Framework\TestCase {
 		$this->assertEquals( $statuscode, $statusline["code"] );
 
 		# To catch any PHP errors that the test didn't notice
-		$this->assertStringNotContainsString( $entity, "<b>Fatal error</b>" );
+		$this->assertStringNotContainsString( "<b>Fatal error</b>", $entity );
 
 		# To catch any PHP notices that the test didn't notice
-		$this->assertStringNotContainsString( $entity, "<b>Notice</b>" );
+		$this->assertStringNotContainsString( "<b>Notice</b>", $entity );
 
 		# To catch any PHP notices that the test didn't notice
-		$this->assertStringNotContainsString( $entity, "<b>Warning</b>" );
+		$this->assertStringNotContainsString( "<b>Warning</b>", $entity );
 
 		# To ensure that the error message actually exists in the output
 		$expected = acquireFormattedI18NString( 'en', 'timemap-404-title' );
