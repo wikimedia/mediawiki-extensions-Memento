@@ -22,6 +22,7 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -110,8 +111,9 @@ abstract class MementoResource {
 	 */
 	public function getFirstMemento( Title $title ) {
 		$revision = [];
+		$revisionLookup = MediaWikiServices::getInstance()->getRevisionLookup();
 
-		$firstRevision = $title->getFirstRevision();
+		$firstRevision = $revisionLookup->getFirstRevision( $title->toPageIdentity() );
 
 		if ( $firstRevision != null ) {
 			$revision['timestamp'] = wfTimestamp( TS_RFC2822, $firstRevision->getTimestamp() );

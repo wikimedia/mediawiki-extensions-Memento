@@ -22,6 +22,7 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -523,16 +524,17 @@ abstract class TimeMapResource extends MementoResource {
 
 		if ( $pgID > 0 ) {
 			$results = $this->getFullTimeMapData( $pgID, $wgMementoTimemapNumberOfMementos );
+			$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
 
-			// get the first revision ID
-			$firstId = $titleObj->getFirstRevision()->getId();
+			// get the first revision
+			$firstRev = $revisionStore->getFirstRevision( $titleObj );
 
-			// get the last revision ID
-			$lastId = $titleObj->getLatestRevID();
-
+			// get the last revision
+			$lastRev = $revisionStore->getRevisionByTitle( $titleObj );
 			// calculate the difference
 			// this counts the revisions BETWEEN, non-inclusive
-			$revCount = $titleObj->countRevisionsBetween( $firstId, $lastId );
+			$pageId = $titleObj->getArticleID();
+			$revCount = $revisionStore->countRevisionsBetween( $pageId, $firstRev, $lastRev );
 
 			// for first and last
 			$revCount = $revCount + 2;
@@ -622,12 +624,17 @@ abstract class TimeMapResource extends MementoResource {
 				$earliestItem = end( $results );
 				reset( $results );
 
-				$firstId = $titleObj->getFirstRevision()->getId();
-				$lastId = $titleObj->getLatestRevId();
+				$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
 
+				$pageId = $titleObj->getArticleID();
+				$firstRev = $revisionStore->getFirstRevision( $titleObj );
+				$lastRev = $revisionStore->getRevisionByTitle( $titleObj );
 				# this counts revisions BETWEEN, non-inclusive
-				$revCount = $titleObj->countRevisionsBetween(
-					$firstId, $earliestItem['rev_id'] );
+				$revCount = $revisionStore->countRevisionsBetween(
+					$pageId,
+					$firstRev,
+					$revisionStore->getRevisionById( $earliestItem['rev_id'] )
+				);
 
 				// for first and last
 				$revCount = $revCount + 2;
@@ -647,8 +654,11 @@ abstract class TimeMapResource extends MementoResource {
 				}
 
 				# this counts revisions BETWEEN, non-inclusive
-				$revCount = $titleObj->countRevisionsBetween(
-					$latestItem['rev_id'], $lastId );
+				$revCount = $revisionStore->countRevisionsBetween(
+					$pageId,
+					$revisionStore->getRevisionById( $latestItem['rev_id'] ),
+					$lastRev
+				);
 
 				// for first and last
 				$revCount = $revCount + 2;
