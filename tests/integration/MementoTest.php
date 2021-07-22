@@ -9,7 +9,7 @@ class MementoTest extends PHPUnit\Framework\TestCase {
 
 	public static $instance = 0;
 
-	public static function setUpBeforeClass() : void {
+	public static function setUpBeforeClass(): void {
 		global $sessionCookieString;
 
 		if ( getenv( 'TESTUSERNAME' ) == 'NOAUTH' ) {
@@ -19,11 +19,11 @@ class MementoTest extends PHPUnit\Framework\TestCase {
 		}
 	}
 
-	public static function tearDownAfterClass() : void {
+	public static function tearDownAfterClass(): void {
 		logOutOfMediawiki();
 	}
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		self::$instance++;
 	}
 
