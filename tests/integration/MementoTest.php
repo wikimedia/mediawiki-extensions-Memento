@@ -561,7 +561,7 @@ class MementoTest extends PHPUnit\Framework\TestCase {
 		$statusline = extractStatuslineFromResponse( $response );
 		$entity = extractEntityFromResponse( $response );
 
-		$this->assertEquals( $statusline["code"], "200" );
+		$this->assertSame( "200", $statusline["code"] );
 
 		$this->StandardEntityTests( $entity, $URIR );
 	}
