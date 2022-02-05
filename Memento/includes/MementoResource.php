@@ -76,19 +76,13 @@ abstract class MementoResource {
 	 * @return array associative array with id and timestamp keys
 	 */
 	public function fetchMementoFromDatabase( $sqlCondition, $sqlOrder ) {
-		$db = $this->db;
-
-		// TODO: use selectRow instead
-		// tried selectRow here, but it returned nothing
-		$results = $db->select(
+		$row = $this->db->selectRow(
 			'revision',
 			[ 'rev_id', 'rev_timestamp' ],
 			$sqlCondition,
 			__METHOD__,
-			[ 'ORDER BY' => $sqlOrder, 'LIMIT' => '1' ]
-			);
-
-		$row = $db->fetchObject( $results );
+			[ 'ORDER BY' => $sqlOrder ]
+		);
 
 		$revision = [];
 
