@@ -57,7 +57,7 @@ class TimeMapTest extends PHPUnit\Framework\TestCase {
 
 		$this->assertSame( "200", $statusline["code"] );
 
-		$this->assertEquals( $entity, $expected_timemap_data );
+		$this->assertEquals( $expected_timemap_data, $entity );
 	}
 
 	/**
@@ -90,7 +90,7 @@ class TimeMapTest extends PHPUnit\Framework\TestCase {
 
 		$this->assertSame( "200", $statusline["code"] );
 
-		$this->assertEquals( $entity, $expected_timemap_data );
+		$this->assertEquals( $expected_timemap_data, $entity );
 	}
 
 	/**
@@ -123,6 +123,6 @@ class TimeMapTest extends PHPUnit\Framework\TestCase {
 
 		$this->assertSame( "200", $statusline["code"] );
 
-		$this->assertEquals( $entity, $expected_timemap_data );
+		$this->assertEquals( $expected_timemap_data, $entity );
 	}
 }
