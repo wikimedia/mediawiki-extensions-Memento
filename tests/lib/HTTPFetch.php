@@ -131,9 +131,9 @@ function authenticateWithMediawiki() {
 
 		$requestEntity = "wpName=$wpName&wpPassword=$wpPassword&wpLoginAttempt=Log+in&wpLoginToken=$wpLoginToken";
 
-		$cookie_session = $cookies["${mwDbName}_session"];
+		$cookie_session = $cookies["{$mwDbName}_session"];
 
-		$cookies = "${mwDbName}_session=$cookie_session";
+		$cookies = "{$mwDbName}_session=$cookie_session";
 
 		$response = `curl -s -i -X POST -d '$requestEntity' -H 'Content-Type: application/x-www-form-urlencoded' -b '$cookies' --url '$mwLoginActionUrl'`;
 
@@ -149,12 +149,12 @@ function authenticateWithMediawiki() {
 
 		$cookies = extractCookiesSetInResponse( $response );
 
-		$cookieUserID = $cookies["${mwDbName}UserID"];
-		$cookieUserName = $cookies["${mwDbName}UserName"];
-		$cookieToken = $cookies["${mwDbName}Token"];
-		$cookie_session = $cookies["${mwDbName}_session"];
+		$cookieUserID = $cookies["{$mwDbName}UserID"];
+		$cookieUserName = $cookies["{$mwDbName}UserName"];
+		$cookieToken = $cookies["{$mwDbName}Token"];
+		$cookie_session = $cookies["{$mwDbName}_session"];
 
-		$sessionCookieString = "${mwDbName}_session=$cookie_session; ${mwDbName}UserID=$cookieUserID; ${mwDbName}UserName=$cookieUserName";
+		$sessionCookieString = "{$mwDbName}_session=$cookie_session; {$mwDbName}UserID=$cookieUserID; {$mwDbName}UserName=$cookieUserName";
 
 		return $sessionCookieString;
 }
