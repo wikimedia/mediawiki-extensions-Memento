@@ -13,20 +13,20 @@ function extractHeadersFromResponse( $response ) {
 
 		$headers = [];
 
-		foreach ( $lines as $line ) {
-			if ( strlen( $line ) == 0 ) {
-				break;
-			}
+	foreach ( $lines as $line ) {
+		if ( strlen( $line ) == 0 ) {
+			break;
+		}
 
-			if ( strpos( $line, "HTTP" ) !== false ) {
-				list( $version, $code, $message ) = preg_split( "/ /", $line );
-			} else {
-				if ( strpos( $line, ":" ) !== false ) {
-					list( $header, $value ) = preg_split( "/: /", $line, 2 );
-					$headers[$header] = $value;
-				}
+		if ( strpos( $line, "HTTP" ) !== false ) {
+			[ $version, $code, $message ] = preg_split( "/ /", $line );
+		} else {
+			if ( strpos( $line, ":" ) !== false ) {
+				[ $header, $value ] = preg_split( "/: /", $line, 2 );
+				$headers[$header] = $value;
 			}
 		}
+	}
 
 	return $headers;
 }
@@ -48,7 +48,7 @@ function extractStatuslineFromResponse( $response ) {
 		}
 
 		if ( strpos( $line, "HTTP" ) !== false ) {
-			list( $version, $code, $message ) = preg_split( "/ /", $line );
+			[ $version, $code, $message ] = preg_split( "/ /", $line );
 			break;
 		}
 	}
@@ -88,10 +88,10 @@ function extractCookiesSetInResponse( $response ) {
 		}
 
 		if ( strpos( $line, ":" ) !== false ) {
-			list( $header, $value ) = preg_split( "/: /", $line, 2 );
+			[ $header, $value ] = preg_split( "/: /", $line, 2 );
 			if ( $header == "Set-Cookie" ) {
 				$cvalues = preg_split( '/;/', $value );
-				list( $cname, $cvalue ) = preg_split( "/=/", $cvalues[0] );
+				[ $cname, $cvalue ] = preg_split( "/=/", $cvalues[0] );
 				$cookies[$cname] = $cvalue;
 			}
 		}
@@ -139,13 +139,13 @@ function authenticateWithMediawiki() {
 
 		$statusline = extractStatuslineFromResponse( $response );
 
-		if ( $statusline['code'] != "302" ) {
-			echo 'TESTUSERNAME = [' . getenv( 'TESTUSERNAME' ) . "]\n";
-			echo 'TESTPASSWORD = [' . getenv( 'TESTPASSWORD' ) . "]\n";
-			echo 'wpName = [' . $wpName . "]\n";
-			echo 'wpPassword = [' . $wpPassword . "]\n";
-			trigger_error( "Authentication failed, check that the TESTUSERNAME and TESTPASSWORD environment variables are set correctly.", E_USER_ERROR );
-		}
+	if ( $statusline['code'] != "302" ) {
+		echo 'TESTUSERNAME = [' . getenv( 'TESTUSERNAME' ) . "]\n";
+		echo 'TESTPASSWORD = [' . getenv( 'TESTPASSWORD' ) . "]\n";
+		echo 'wpName = [' . $wpName . "]\n";
+		echo 'wpPassword = [' . $wpPassword . "]\n";
+		trigger_error( "Authentication failed, check that the TESTUSERNAME and TESTPASSWORD environment variables are set correctly.", E_USER_ERROR );
+	}
 
 		$cookies = extractCookiesSetInResponse( $response );
 
