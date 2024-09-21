@@ -22,6 +22,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Main Memento class, used by hooks.
  *
@@ -60,7 +62,7 @@ class Memento {
 			// let MediaWiki handle that case instead
 			if ( is_object( $revision ) ) {
 
-				$db = wfGetDB( DB_REPLICA );
+				$db = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_REPLICA );
 				$oldID = $article->getOldID();
 				$request = $article->getContext()->getRequest();
 

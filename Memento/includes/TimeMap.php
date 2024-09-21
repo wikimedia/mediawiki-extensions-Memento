@@ -22,6 +22,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  *
  * Special Page Implementation of a Memento TimeMap
@@ -81,7 +83,7 @@ class TimeMap extends SpecialPage {
 		$article = new Article( $title );
 		$article->setContext( $this->getContext() );
 
-		$db = wfGetDB( DB_REPLICA );
+		$db = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_REPLICA );
 
 		$page = TimeMapResource::timeMapFactory( $db, $article, $urlparam );
 
