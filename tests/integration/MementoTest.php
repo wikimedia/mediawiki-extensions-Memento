@@ -544,7 +544,7 @@ class MementoTest extends PHPUnit\Framework\TestCase {
 	/**
 	 * @group all
 	 *
-	 * @dataProvider acquireDiffUrls()
+	 * @dataProvider acquireDiffUrls
 	 */
 	public function testDiffPage( $URIR ) {
 		global $sessionCookieString;
