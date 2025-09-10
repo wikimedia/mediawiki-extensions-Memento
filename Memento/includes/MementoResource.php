@@ -28,7 +28,6 @@ use Wikimedia\Rdbms\IDatabase;
 /**
  * This abstract class is the parent of all MementoResource types.
  * As such, it contains the methods used by all of the Memento Pages.
- *
  */
 abstract class MementoResource {
 
@@ -37,7 +36,6 @@ abstract class MementoResource {
 	 *
 	 * @param IDatabase $db
 	 * @param Article $article
-	 *
 	 */
 	public function __construct( IDatabase $db, Article $article ) {
 		$this->db = $db;
@@ -450,7 +448,6 @@ abstract class MementoResource {
 	 * This function is used to alter the headers of the outgoing response,
 	 * and must be implemented by the MementoResource implementation.
 	 * It is expected to be called from the ArticleViewHeader hook.
-	 *
 	 */
 	abstract public function alterHeaders();
 

@@ -58,7 +58,6 @@ class TimeNegotiator {
 	 * Constructor for TimeNegotiator
 	 *
 	 * @param MementoResource $mementoResource object to work on
-	 *
 	 */
 	public function __construct( $mementoResource ) {
 		$this->mementoResource = $mementoResource;
@@ -73,7 +72,6 @@ class TimeNegotiator {
 	 *
 	 * Time negotiation function, intended only to be called from the
 	 * constructor. Has class-wide side effects.
-	 *
 	 */
 	private function negotiate() {
 		$mr = $this->mementoResource;

@@ -52,7 +52,6 @@ abstract class TimeMapResource extends MementoResource {
 	 * @param string $urlparam the data passed into a SpecialPage
 	 *
 	 * @return bool true if contains pivot pattern (e.g. /2011010100/-1/)
-	 *
 	 */
 	public static function containsPivot( $urlparam ) {
 		$matches = preg_match(
@@ -69,7 +68,6 @@ abstract class TimeMapResource extends MementoResource {
 	 * @param string $urlparam the data passed into a SpecialPage
 	 *
 	 * @return bool true if pivot is ascending (e.g. /20100424130000/1/)
-	 *
 	 */
 	public static function isPivotAscending( $urlparam ) {
 		$matches = preg_match(
@@ -86,7 +84,6 @@ abstract class TimeMapResource extends MementoResource {
 	 * @param string $urlparam the data passed into a SpecialPage
 	 *
 	 * @return bool true if pivot is descending (e.g. /20100424130000/-1/)
-	 *
 	 */
 	public static function isPivotDescending( $urlparam ) {
 		$matches = preg_match(
@@ -108,7 +105,6 @@ abstract class TimeMapResource extends MementoResource {
 	 * @param string $urlparam the data passed into a SpecialPage
 	 *
 	 * @return TimeMapResource
-	 *
 	 */
 	public static function timeMapFactory( IDatabase $db, Article $article, $urlparam ) {
 		if ( self::containsPivot( $urlparam ) ) {
@@ -312,7 +308,6 @@ abstract class TimeMapResource extends MementoResource {
 	 * 			and altered, but now contains an entry that is an array with
 	 * 			keys of uri, from, and until representing the next Time Map,
 	 * 			its starting time and ending time
-	 *
 	 */
 	public function generateDescendingTimeMapPaginationData(
 		$pgID, $pivotTimestamp, &$timeMapPages, $title ) {
@@ -507,7 +502,6 @@ abstract class TimeMapResource extends MementoResource {
 	 *
 	 * This method handles all of the operations of rendering a Full TimeMap
 	 * referring to one not requested with a pivot.
-	 *
 	 */
 	public function renderFullTimeMap() {
 		global $wgMementoTimemapNumberOfMementos;
@@ -584,7 +578,6 @@ abstract class TimeMapResource extends MementoResource {
 	 * PivotAscending or PivotDescending TimeMap.  It requires the
 	 * implementation of the abstract class getPivotTimeMapData.  It is
 	 * meant to be called form alterEntity.
-	 *
 	 */
 	public function renderPivotTimeMap() {
 		global $wgMementoTimemapNumberOfMementos;

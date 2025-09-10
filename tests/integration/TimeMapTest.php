@@ -29,7 +29,6 @@ class TimeMapTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @group timemap
-	 *
 	 */
 	public function testSimpleTimeMap() {
 		global $sessionCookieString;
@@ -62,7 +61,6 @@ class TimeMapTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @group timemap
-	 *
 	 */
 	public function testSimpleIncreasingTimeMap() {
 		global $sessionCookieString;
@@ -95,7 +93,6 @@ class TimeMapTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @group timemap
-	 *
 	 */
 	public function testSimpleDecreasingTimeMap() {
 		global $sessionCookieString;

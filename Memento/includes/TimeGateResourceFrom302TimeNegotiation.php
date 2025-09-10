@@ -40,7 +40,6 @@ class TimeGateResourceFrom302TimeNegotiation extends MementoResource {
 	 * Create the 302 redirect response for this Mediawiki Page.  All output
 	 * is disabled once the headers are constructed so that there is no entity
 	 * in the 302 response.
-	 *
 	 */
 	public function alterHeaders() {
 		global $wgMementoIncludeNamespaces;

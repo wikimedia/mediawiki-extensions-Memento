@@ -28,7 +28,6 @@
  * referred to here as a "descending pivot" where the pivot is the date
  * of 20130720011113 and the -1 in the URI indicates that we want a
  * Time Map of mementos from before that pivot date.
- *
  */
 class TimeMapPivotDescendingResource extends TimeMapResource {
 
@@ -50,7 +49,6 @@ class TimeMapPivotDescendingResource extends TimeMapResource {
 
 	/**
 	 * Render the page
-	 *
 	 */
 	public function alterEntity() {
 		$this->renderPivotTimeMap();

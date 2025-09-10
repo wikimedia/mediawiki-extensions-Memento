@@ -25,7 +25,6 @@
 use MediaWiki\MediaWikiServices;
 
 /**
- *
  * Special Page Implementation of a Memento TimeMap
  * @see http://mementoweb.org
  *
@@ -33,7 +32,6 @@ use MediaWiki\MediaWikiServices;
  * the mediation over the real work.  The goal is to separate
  * the Mediawiki setup code from the Memento code as much as possible
  * for clarity, testing, maintainability, etc.
- *
  */
 class TimeMap extends SpecialPage {
 
